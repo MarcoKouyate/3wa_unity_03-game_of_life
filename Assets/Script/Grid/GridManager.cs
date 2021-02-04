@@ -12,6 +12,12 @@ namespace GameOfLife
         [SerializeField] private float _stepInterval;
         [SerializeField] private bool _pause;
 
+        public bool Pause
+        {
+            get => _pause;
+            set => _pause = value;
+        }
+
         private void Awake()
         {
             Init();
@@ -138,7 +144,7 @@ namespace GameOfLife
 
         private bool IsNeighbourExist(int x, int y)
         {
-            return !(x < 0 || x > _columns-1 || y < 0 || y > _rows-1);
+            return !(x < 0 || x >= _columns || y < 0 || y >= _rows);
         }
 
         private float _nextStepTime;
