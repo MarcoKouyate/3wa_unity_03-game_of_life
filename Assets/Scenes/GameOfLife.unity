@@ -246,10 +246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0479dafe6e0bf49a81780ed3728b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rows: 20
-  _columns: 20
+  _rows: 10
+  _columns: 10
   _cellPrefab: {fileID: 2675277627546042754, guid: 4bc95ee51076648409eb1cd37b63d48d,
     type: 3}
+  _stepInterval: 0.2
+  _pause: 1
 --- !u!4 &1979361550
 Transform:
   m_ObjectHideFlags: 0
