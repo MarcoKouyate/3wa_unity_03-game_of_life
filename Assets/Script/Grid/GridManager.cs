@@ -56,7 +56,6 @@ namespace GameOfLife
             {
                 for (int j = 0; j < _cells.GetLength(1); j++)
                 {
-                    
                     GameObject cell = Instantiate(_cellPrefab, _transform) ;
                     cell.transform.localScale = cellScale / (Vector2)_transform.localScale;
                     cell.transform.position = _transform.position + (Vector3) offset + Vector3.right * (cellScale.x * i) + Vector3.down * (cellScale.y * j);
@@ -70,35 +69,38 @@ namespace GameOfLife
             if(!_pause && Time.time > _nextStepTime)
             {
                 _nextStepTime = Time.time + _stepInterval;
-                NextStep();
+                SimulateCells();
+                UpdateCellsState();
             }
         }
 
-        private void NextStep()
+        private void UpdateCellsState()
+        {
+            foreach(CellManager cellManager in _cells)
+            {
+                cellManager.UpdateState();
+            }
+        }
+
+        private void SimulateCells()
         {
             for (int i = 0; i < _cells.GetLength(0); i++)
             {
                 for (int j = 0; j < _cells.GetLength(1); j++)
                 {
-                    UpdateCell(i, j);
+                    SimulateCell(i, j);
                 }
             }
         }
 
-        private void UpdateCell(int x, int y) {
+        private void SimulateCell(int x, int y) {
             int neighboursCount = CountAliveNeighbours(x, y);
             CellManager cellManager = _cells[x,y].GetComponent<CellManager>();
+            cellManager.ShouldBeAlive = ((neighboursCount == 3) || (cellManager.IsAlive && neighboursCount == 2));
 
-            if (neighboursCount == 3)
-            {
-                cellManager.IsAlive = true;
-            } else if( neighboursCount == 2)
-            {
-                // change nothing
-            } else
-            {
-                cellManager.IsAlive = false;
-            }
+            // Any live cell with two or three live neighbours survives.
+            // Any dead cell with three live neighbours becomes a live cell.
+            // All other live cells die in the next generation.Similarly, all other dead cells stay dead.
         }
 
         void OnDrawGizmos()
@@ -113,12 +115,11 @@ namespace GameOfLife
             int aliveCount = 0;
             foreach(CellManager neighbour in GetNeighbours(x, y))
             {
-                if (neighbour != null && neighbour.IsAlive)
+                if (neighbour.IsAlive)
                 {
                     aliveCount++;
                 }
             }
-
             return aliveCount;
         }
 

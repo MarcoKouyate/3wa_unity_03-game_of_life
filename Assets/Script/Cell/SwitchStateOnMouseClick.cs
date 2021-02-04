@@ -14,7 +14,7 @@ namespace GameOfLife
 
         private void OnMouseDown()
         {
-            _cellManager.IsAlive = !_cellManager.IsAlive;
+            _cellManager.SwitchState();
         }
 
         private CellManager _cellManager;
