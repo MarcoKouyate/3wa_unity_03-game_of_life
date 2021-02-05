@@ -94,9 +94,9 @@ namespace GameOfLife
         }
 
         private void SimulateCell(int x, int y) {
-            int neighboursCount = CountAliveNeighbours(x, y);
+            int aliveNeighboursCount = CountAliveNeighbours(x, y);
             CellManager cellManager = _cells[x,y].GetComponent<CellManager>();
-            cellManager.ShouldBeAlive = ((neighboursCount == 3) || (cellManager.IsAlive && neighboursCount == 2));
+            cellManager.ShouldBeAlive = ((aliveNeighboursCount == 3) || (cellManager.IsAlive && aliveNeighboursCount == 2));
 
             // Any live cell with two or three live neighbours survives.
             // Any dead cell with three live neighbours becomes a live cell.

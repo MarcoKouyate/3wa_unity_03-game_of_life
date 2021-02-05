@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 1979361550}
   - component: {fileID: 1979361549}
   - component: {fileID: 1979361548}
+  - component: {fileID: 1979361551}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -246,8 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0479dafe6e0bf49a81780ed3728b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rows: 10
-  _columns: 10
+  _rows: 50
+  _columns: 67
   _cellPrefab: {fileID: 2675277627546042754, guid: 4bc95ee51076648409eb1cd37b63d48d,
     type: 3}
   _stepInterval: 0.2
@@ -261,8 +262,20 @@ Transform:
   m_GameObject: {fileID: 1979361547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 13.35, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1979361551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979361547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8465d96ec1a336543a21ce116ba1b615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
